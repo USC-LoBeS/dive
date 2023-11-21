@@ -162,7 +162,7 @@ python main.py --mask "< mask1.nii.gz mask2.nii.gz>"  --tract "< tract1.trk trac
 
 - [3] <strong>Rendering Tract/Mask/Mesh with a multi labeled mask using a stas file (csv) :</strong> ```
 python main.py --mask "< mask1.nii.gz mask2.nii.gz>"  --tract "< tract1.trk tract2.trk>" --stats_mask_csv_value stats_file1.csv,stats_file2.csv --range_t_value -14 14 --threshold_mask 5 --map Spectral_r```
-
+![Image][fig3-image]
   <strong> Note: Provide a mask that has multiple labels, it is automatically detected and colored using the stats file (It should have few values like labels,p_value and t_value). Labels column is used to map colors to the same label number present in the mask. P_value is used as the thresholding factor to make a label significant or not (color it grey). T_value is normalized and used to choose a color from color_map (Matplotlib color_map). These colors are used to color the tract and mesh as well.  </strong>
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
@@ -238,6 +238,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [ui-image]: images/UI.png
 [fig1-image]: images/Figure1.png
 [fig2-image]: images/Figure2.jpg
+[fig3-image]: images/Figure3.jpg
 [Fury.]: https://img.shields.io/badge/Fury-red?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
 [Fury-url]: https://fury.gl/latest/index.html
 [OpenGL.]: https://img.shields.io/badge/OpenGL-%235586A4?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
