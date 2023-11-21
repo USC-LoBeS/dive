@@ -30,8 +30,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="/Volumes/faculty/njahansh/nerds/siddharth/scripts/DIVE/assets/Logo.svg">
-    <img src="/Volumes/faculty/njahansh/nerds/siddharth/scripts/DIVE/assets/Logo.svg" alt="Logo" width="80" height="80">
+  <a href="images/Logo.svg">
+    <img src="images/Logo.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">DiVE</h3>
@@ -84,7 +84,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Image][product-screenshot]](https://example.com)
+![Image][product-screenshot]
 
  DiVE presented herein serves the purpose of visualizing medical imaging data. It supports users capability to load and visualize tractography, employing track files, masks in NIfTI format (nii, nii.gz), and mesh files. Furthermore, users are empowered to load multiple Regions of Interest (ROIs) in flexible combinations, be it exclusively of one type (mesh, mask, or tract) or a combination. Additionally, users retain the option to toggle between 3D visualization and output saving by specifying a designated path. `github_username`, `repo_name`, `linkedin_username`
 
@@ -140,6 +140,7 @@ Linux and Windows are supported, but we recommend Linux for performance and comp
 Use the sliders to change the opacity of the file for a selected file.
 5. <strong> Add Button: </strong> To add more items, click the add button and choose the type of file you want to add.
 6. <strong> Remove Button: </strong> To remove a specific file, select it using the Choose type and then click this button.
+![Image][ui-image]
 
 
 <!-- USAGE -->
@@ -148,12 +149,14 @@ Use the sliders to change the opacity of the file for a selected file.
 Here are few example of how to use the code for specific features.
 
 - [1] <strong>Rendering Tract/Mask/Mesh with a single color :</strong> ```
-python main.py --mask "< mask1.nii.gz mask2.nii.gz>"  --tract "< tract1.nii.gz tract2.nii.gz>" --mesh "< mesh1.nii.gz mesh2.nii.gz>" --brain_2d "< brain.nii.gz"> --colors_mask " < red,#FF0000> --colors_mesh " < green,#96be25> --colors_tract " < blue,#2596be> " ```
+python main.py --mask "mask1.nii.gz mask2.nii.gz"  --tract "tract1.trk tract2.trk" --mesh " mesh1.vtk mesh2.vtk" --brain_2d "< brain.nii.gz"> --colors_mask " < red,#FF0000> --colors_mesh " < green,#96be25> --colors_tract " < blue,#2596be> " ```
+![Image][fig1-image]
 
   <strong> Note: For multiple files in Mask/Mesh/Tract use "SPACE" to separate For colors you can be provide either name or the hex , If colors_tract is not provided then uses direction of tracts to color it. If colors_mask/colors_mesh is not provided then uses a random color</strong>
 
 - [2] <strong>Rendering Tract/Mask/Mesh with a multi labeled mask :</strong> ```
 python main.py --mask "< mask1.nii.gz mask2.nii.gz>"  --tract "< tract1.trk tract2.trk>" --mesh "< mesh1.vtk mesh2.vtl>" --glass_brain "< brain_wm.nii.gz"> --width_tract 4 --background 1 ```
+![Image][fig2-image]
 
   <strong> Note: Provide a mask that has multiple labels, it is automatically detected and colored using disctinctipy library. These colors are used to color the tract and mesh as well. Keep the order of files of same ROI constant e.g. if CST_L is < mask1.nii.gz > in mask then it should be the 1st in Mesh and Tract < tract1.trk> Use Glass Brain for a 3D white matter brain, background 0/1 (black/white) and width_tract to specify the width of all the tracts </strong>
 
@@ -231,7 +234,10 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/OHBM_Images_Brain3d.jpg
+[ui-image]: images/UI.png
+[fig1-image]: images/Figure1.png
+[fig2-image]: images/Figure2.jpg
 [Fury.]: https://img.shields.io/badge/Fury-red?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
 [Fury-url]: https://fury.gl/latest/index.html
 [OpenGL.]: https://img.shields.io/badge/OpenGL-%235586A4?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
