@@ -71,8 +71,6 @@
 [![Fury][Fury.]][Fury-url]
 [![OpenGL][OpenGL.]][OpenGL-url]
 [![distinctipy][dist.]][dist-url]
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -205,8 +203,10 @@ Project Link: [https://github.com/USC-LoBeS/DiVE/](https://github.com/USC-LoBeS/
 [fig3-image]: images/Figure3.png
 [Fury.]: https://img.shields.io/badge/Fury-red?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
 [Fury-url]: https://fury.gl/latest/index.html
+
 [OpenGL.]: https://img.shields.io/badge/OpenGL-%235586A4?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
 [OpenGL-url]:https://www.opengl.org/
+
 [dist.]:https://img.shields.io/badge/distinctipy-blue?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
 [dist-url]: https://doi.org/10.5281/zenodo.3985191
 
