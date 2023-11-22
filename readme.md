@@ -60,7 +60,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
- DiVE presented herein serves the purpose of visualizing medical imaging data. It supports users capability to load and visualize tractography, employing track files, masks in NIfTI format (nii, nii.gz), and mesh files. Furthermore, users are empowered to load multiple Regions of Interest (ROIs) in flexible combinations, be it exclusively of one type (mesh, mask, or tract) or a combination. Additionally, users retain the option to toggle between 3D visualization and output saving by specifying a designated path.
+ Diffusion Visualization and Explorer (DiVE) is a tool designed for visualizing medical imaging data. It allows users to visualize tractography in various formats (TRK, TCK, VTK), binary masks in NIfTI format, and meshes in VTK format. Users also have the flexibility to load multiple Regions of Interest (ROIs) in different combinations, whether they are exclusively of one type (mesh, mask, or tract) or a combination of types. Additionally, users can toggle between 3D visualization and saving the output by specifying a designated path.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -112,8 +112,8 @@ Linux and Windows are supported, but we recommend Linux for performance and comp
 Use the sliders to change the opacity of the file for a selected file.
 5. <strong> Add Button: </strong> To add more items, click the add button and choose the type of file you want to add.
 6. <strong> Remove Button: </strong> To remove a specific file, select it using the Choose type and then click this button.
+   
 ![Image][ui-image]
-
 
 <!-- USAGE -->
 ## USAGE CLI
@@ -175,9 +175,8 @@ Project Link: [https://github.com/USC-LoBeS/DiVE/](https://github.com/USC-LoBeS/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* I. Ba Gari et al., “Along-Tract Parameterization of White Matter Microstructure using Medial Tractography Analysis (MeTA),” in The 19th International Symposium on Medical Information Processing and Analysis, 2023
+* OHBM abstract
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
