@@ -60,8 +60,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Image][product-screenshot]
-
  DiVE presented herein serves the purpose of visualizing medical imaging data. It supports users capability to load and visualize tractography, employing track files, masks in NIfTI format (nii, nii.gz), and mesh files. Furthermore, users are empowered to load multiple Regions of Interest (ROIs) in flexible combinations, be it exclusively of one type (mesh, mask, or tract) or a combination. Additionally, users retain the option to toggle between 3D visualization and output saving by specifying a designated path.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -168,7 +166,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Siddharth Narula/Lobels - 
+Lobes - 
 
 Project Link: [https://github.com/USC-LoBeS/DiVE/](https://github.com/USC-LoBeS/DiVE/)
 
@@ -203,8 +201,8 @@ Project Link: [https://github.com/USC-LoBeS/DiVE/](https://github.com/USC-LoBeS/
 [product-screenshot]: images/OHBM_Images_Brain3d.jpg
 [ui-image]: images/UI.png
 [fig1-image]: images/Figure1.png
-[fig2-image]: images/Figure2.jpg
-[fig3-image]: images/Figure3.jpg
+[fig2-image]: images/Figure2.png
+[fig3-image]: images/Figure3.png
 [Fury.]: https://img.shields.io/badge/Fury-red?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
 [Fury-url]: https://fury.gl/latest/index.html
 [OpenGL.]: https://img.shields.io/badge/OpenGL-%235586A4?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
