@@ -1,33 +1,10 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 <!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
-
-
-<!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="images/Logo.svg">
@@ -39,14 +16,14 @@
   <p align="center">
     Diffusion Visualization and Explorer
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/USC-LoBeS/DiVE/e"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/github_username/repo_name">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/USC-LoBeS/DiVE/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/USC-LoBeS/DiVE/issues">Request Feature</a>
   </p>
 </div>
 
@@ -73,7 +50,6 @@
     <li><a href="#usage-cli">Usage CLI</a></li>
     <li><a href="#usage">Usage GUI</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -149,19 +125,19 @@ Use the sliders to change the opacity of the file for a selected file.
 Here are few example of how to use the code for specific features.
 
 - [1] <strong>Rendering Tract/Mask/Mesh with a single color :</strong> ```
-python main.py --mask "mask1.nii.gz mask2.nii.gz"  --tract "tract1.trk tract2.trk" --mesh " mesh1.vtk mesh2.vtk" --brain_2d "< brain.nii.gz"> --colors_mask " < red,#FF0000> --colors_mesh " < green,#96be25> --colors_tract " < blue,#2596be> " ```
+python main.py --mask mask1.nii.gz mask2.nii.gz  --tract tract1.trk tract2.trk --mesh mesh1.vtk mesh2.vtk --brain_2d brain.nii.gz --colors_mask red,#FF0000 --colors_mesh green,#96be25 --colors_tract blue,#2596be```
 ![Image][fig1-image]
 
   <strong> Note: For multiple files in Mask/Mesh/Tract use "SPACE" to separate For colors you can be provide either name or the hex , If colors_tract is not provided then uses direction of tracts to color it. If colors_mask/colors_mesh is not provided then uses a random color</strong>
 
 - [2] <strong>Rendering Tract/Mask/Mesh with a multi labeled mask :</strong> ```
-python main.py --mask "< mask1.nii.gz mask2.nii.gz>"  --tract "< tract1.trk tract2.trk>" --mesh "< mesh1.vtk mesh2.vtl>" --glass_brain "< brain_wm.nii.gz"> --width_tract 4 --background 1 ```
+python main.py --mask mask1.nii.gz mask2.nii.gz  --tract tract1.trk tract2.trk --mesh mesh1.vtk mesh2.vtk --glass_brain brain_wm.nii.gz --width_tract 4 --background 1 ```
 ![Image][fig2-image]
 
   <strong> Note: Provide a mask that has multiple labels, it is automatically detected and colored using disctinctipy library. These colors are used to color the tract and mesh as well. Keep the order of files of same ROI constant e.g. if CST_L is < mask1.nii.gz > in mask then it should be the 1st in Mesh and Tract < tract1.trk> Use Glass Brain for a 3D white matter brain, background 0/1 (black/white) and width_tract to specify the width of all the tracts </strong>
 
 - [3] <strong>Rendering Tract/Mask/Mesh with a multi labeled mask using a stas file (csv) :</strong> ```
-python main.py --mask "< mask1.nii.gz mask2.nii.gz>"  --tract "< tract1.trk tract2.trk>" --stats_mask_csv_value stats_file1.csv,stats_file2.csv --range_t_value -14 14 --threshold_mask 5 --map Spectral_r```
+python main.py --mask mask1.nii.gz mask2.nii.gz --tract tract1.trk tract2.trk --stats_mask_csv_value stats_file1.csv,stats_file2.csv --range_t_value -14 14 --threshold_mask 5 --map Spectral_r```
 ![Image][fig3-image]
   <strong> Note: Provide a mask that has multiple labels, it is automatically detected and colored using the stats file (It should have few values like labels,p_value and t_value). Labels column is used to map colors to the same label number present in the mask. P_value is used as the thresholding factor to make a label significant or not (color it grey). T_value is normalized and used to choose a color from color_map (Matplotlib color_map). These colors are used to color the tract and mesh as well.  </strong>
 
@@ -189,21 +165,12 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
 Siddharth Narula/Lobels - 
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/USC-LoBeS/DiVE/](https://github.com/USC-LoBeS/DiVE/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -221,7 +188,6 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
 [contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
@@ -229,9 +195,9 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
 [stars-url]: https://github.com/github_username/repo_name/stargazers
 [issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
+[issues-url]: https://github.com/USC-LoBeS/DiVE/issues
 [license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+<!-- [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/OHBM_Images_Brain3d.jpg
