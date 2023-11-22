@@ -62,7 +62,7 @@
 
 ![Image][product-screenshot]
 
- DiVE presented herein serves the purpose of visualizing medical imaging data. It supports users capability to load and visualize tractography, employing track files, masks in NIfTI format (nii, nii.gz), and mesh files. Furthermore, users are empowered to load multiple Regions of Interest (ROIs) in flexible combinations, be it exclusively of one type (mesh, mask, or tract) or a combination. Additionally, users retain the option to toggle between 3D visualization and output saving by specifying a designated path. `github_username`, `repo_name`, `linkedin_username`
+ DiVE presented herein serves the purpose of visualizing medical imaging data. It supports users capability to load and visualize tractography, employing track files, masks in NIfTI format (nii, nii.gz), and mesh files. Furthermore, users are empowered to load multiple Regions of Interest (ROIs) in flexible combinations, be it exclusively of one type (mesh, mask, or tract) or a combination. Additionally, users retain the option to toggle between 3D visualization and output saving by specifying a designated path.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
