@@ -175,7 +175,7 @@ Project Link: [https://github.com/USC-LoBeS/DiVE/](https://github.com/USC-LoBeS/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* I. Ba Gari et al., “Along-Tract Parameterization of White Matter Microstructure using Medial Tractography Analysis (MeTA),” in The 19th International Symposium on Medical Information Processing and Analysis, 2023
+* I. B. Gari et al., "Along-Tract Parameterization of White Matter Microstructure using Medial Tractography Analysis (MeTA)," 2023 19th International Symposium on Medical Information Processing and Analysis (SIPAIM), Mexico City, Mexico, 2023, pp. 1-5, doi: 10.1109/SIPAIM56729.2023.10373540.
 * OHBM abstract
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
