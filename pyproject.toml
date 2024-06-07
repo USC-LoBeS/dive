@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dive"
+version = "1.0.0"
+authors = [
+  { name="Siddharth Narula", email="narulas@usc.edu" },
+  { name="Iyad Ba Gari", email="iyad.bagari@usc.edu" }
+]
+maintainers = [
+  { name="Siddharth Narula", email="narulas@usc.edu" },
+  { name="Iyad Ba Gari", email="iyad.bagari@usc.edu" }
+]
+
+description = "The Diffusion Visualization Explorer (DiVE) Tool"
+keywords = ["Diffusion MRI", "along-tract visualization", "tractography", "white matter bundle"]
+ 
+readme = "README.md"
+
+
+license = { file="LICENSE" }
+requires-python = ">=3.9"
+dependencies = [
+  'distinctipy==1.2.3',
+  'fury==0.9.0',
+  'matplotlib==3.7.5',
+  'nibabel==5.1.0',
+  'numpy==1.24.4',
+  'ordered-set==4.1.0',
+  'pandas==2.0.2',
+  'pyvista==0.42.3',
+  'trx-python==0.2.9',
+  'vtk==9.3.0',
+  'webcolors'
+]
+
+classifiers = [
+    'Intended Audience :: Science/Research',
+    'Programming Language :: Python :: 3',
+    'Operating System :: Unix'
+]
+
+[project.urls]
+Repository = "https://github.com/USC-LoBeS/dive"
+
+[project.scripts]
+dive = "dive.main:run_main"
+
+[tool.setuptools.package-data]
+dive = ["*.png"]
+
+[tool.setuptools.packages.find]
+include = ["dive*"]
+exclude = ["LICENSES*", "example*", "images*"]
