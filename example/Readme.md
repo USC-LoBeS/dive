@@ -1,7 +1,8 @@
 - [1] <strong>Rendering Tract/Mask/Mesh :</strong> 
 
 
-![Image][fig1-image]
+![Image](https://github.com/USC-LoBeS/dive/blob/main/example/images/Picture1.png)
+
 ```
 dive --mask /example/IFOF_R_global_all.nii.gz
 ```
