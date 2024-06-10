@@ -69,7 +69,7 @@
 - [4] <strong>Rendering Multiple File Types :</strong> 
     To render multiple files types tegether the user can specify the tracts and masks together if they are given with the same index and mask is a multi-labeled mask then the mask's colormap is applied to the Tracts.
     
-    <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture7.png" width="480">
+    <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture7_1.png" width="480">
 
     ```
     dive --mask example/DSI_CST_R_local_all.nii.gz --stats_csv example/stat_template.csv --tract example/CST_R.trk --glass_brain example/ICBM152_adult.WM.nii.gz --background 1 --output example/test_op
