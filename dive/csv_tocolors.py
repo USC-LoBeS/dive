@@ -68,11 +68,15 @@ class Colors_csv():
         self.colors_from_csv = np.asarray(self.colors_from_csv)
 
         ## Save the color bar images
+        
         fig, ax = plt.subplots(figsize=(6, 1))
+
         print(self.df[self.col_name])
         if output!=None:
-            cb = matplotlib.colorbar.ColorbarBase(ax, cmap=cmap, values=sorted(self.df[self.col_name]), orientation='horizontal',spacing='uniform') # 
-            cb.ax.tick_params(labelsize=10) 
+            sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+            sm.set_array([])
+            cb = fig.colorbar(sm, cax=ax,orientation='horizontal') # 
+            # cb.ax.tick_params(labelsize=10) 
             plt.savefig((output + filename) , bbox_inches='tight', dpi=300)
 
         return self.colors_from_csv
