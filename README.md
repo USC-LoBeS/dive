@@ -40,7 +40,6 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -79,11 +78,6 @@
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-Linux and Windows are supported, but we recommend Linux for performance and compatibility reasons.
-1–8 GPUs with at least 12 GB of memory.
-64-bit Python 3.8.
 
 ### Installation
 
@@ -149,8 +143,6 @@ Don't forget to give the project a star! Thanks again!
 
 Lobes - njahansh@usc.edu, narulas@usc.edu, bagari@usc.edu
 
-Project Link: [https://github.com/USC-LoBeS/DiVE/](https://github.com/USC-LoBeS/DiVE/)
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -158,9 +150,9 @@ Project Link: [https://github.com/USC-LoBeS/DiVE/](https://github.com/USC-LoBeS/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* Narula Siddharth, Iyad Ba Gari, Shruti P. Gadewar, Sunanda Somu, Neda Jahanshad, "Diffusion Visualization Explorer (DiVE)"
+* Siddharth Narula, Iyad Ba Gari, Shruti P. Gadewar, Sunanda Somu, Neda Jahanshad, "Diffusion Visualization Explorer (DiVE) Organization for Human Brain Mapping (OHBM 2024) June 26,2024 https://ww6.aievolution.com/hbm2401/index.cfm?do=abs.viewAbstract&style=1&abstractID=2661"
 
-* Gari, Iyad Ba, Shayan Javid, Alyssa H. Zhu, Shruti P. Gadewar, Siddharth Narula, Abhinaav Ramesh, Sophia I. Thomopoulos et al. "Along-Tract Parameterization of White Matter Microstructure using Medial Tractography Analysis (MeTA)." In 2023 19th International Symposium on Medical Information Processing and Analysis (SIPAIM), pp. 1-5. IEEE, 2023. doi: 10.1109/SIPAIM56729.2023.10373540.
+* Iyad Ba Gari, Shayan Javid, Alyssa H. Zhu, Shruti P. Gadewar, Siddharth Narula, Abhinaav Ramesh, Sophia I. Thomopoulos et al. "Along-Tract Parameterization of White Matter Microstructure using Medial Tractography Analysis (MeTA)." In 2023 19th International Symposium on Medical Information Processing and Analysis (SIPAIM), pp. 1-5. IEEE, 2023. doi: 10.1109/SIPAIM56729.2023.10373540.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
