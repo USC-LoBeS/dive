@@ -16,7 +16,7 @@
   <p align="center">
     Diffusion Visualization and Explorer
     <br />
-    <a href="[https://github.com/USC-LoBeS/DiVE/](https://github.com/USC-LoBeS/dive/tree/main/example#readme)"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/USC-LoBeS/dive/tree/main/example#readme"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/github_username/repo_name">View Demo</a>
@@ -111,7 +111,7 @@ Here are few example of how to use the code for specific features.
 ```
 The user can give a 3D region of interest label image in NIFTI format and the tool will render it as a set of 3D contours (Figure A). Tract rendering can be conducted across all common formats (trk, tck, trx, vtk), with user defined coloring options, as well as available defaults (Figure B). Each fiber tract is displayed as tubes with a user-defined width. The tool applies either the color specified by the user or a random color for single labeled masks and chooses a set of distinct colors for multi-labeled masks using “distinctipy” or uses the colormap specified by the user (Figure C). DiVE also allows for the overlay of NIFTI masks and surface meshes on the fiber tracts, which can map scalar values to color or opacity, providing insights into tissue microstructure. The tool supports backgrounds using either a 3D glass brain or 2D slices. Visualization can be done in any stereotaxic space.
 ```
-  <strong> Note: Specific Use cases can be found in [open Examples](https://github.com/USC-LoBeS/DiVE/example/Readme.md) </strong>
+  <strong> Note: Specific Use cases can be found in [open Examples](https://github.com/USC-LoBeS/dive/tree/main/example) </strong>
 
 
 See the [open issues](https://github.com/USC-LoBeS/DiVE/issues) for a full list of proposed features (and known issues).
