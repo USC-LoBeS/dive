@@ -19,8 +19,6 @@
     <a href="https://github.com/USC-LoBeS/dive/tree/main/example#readme"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
     <a href="https://github.com/USC-LoBeS/DiVE/issues">Report Bug</a>
     ·
     <a href="https://github.com/USC-LoBeS/DiVE/issues">Request Feature</a>
