@@ -7,6 +7,7 @@ from dive.mask import Mask
 import nibabel as nib
 from dive.tract import Tract
 from dive.helper import  Colors
+import trx.trx_file_memmap as tmm
 class load:
     def __init__(self):
         self.index_mask = 0
@@ -74,8 +75,10 @@ class load:
     def load_tract(self,tract_args=None,tract_width = 1.0,tract_color = None,color_map_csv_tract=[],color_map_csv_mask=[]):
 
         if tract_args!=None:
-            if str(tract_args).split('.')[-1] == '.gz' or str(tract_args).split('.')[-1] == 'zip':
+            if str(tract_args).split('.')[-1] == 'gz' or str(tract_args).split('.')[-1] == 'zip':
                 tract_image =  nib.streamlines.load(self.read_from_compressed(tract_args))
+            elif str(tract_args).split('.')[-1] == 'trx':
+                    tract_image =  tmm.load(tract_args)
             else: tract_image = nib.streamlines.load(tract_args)
 
             if not tract_image.header : print("The Track has no Header!") 
