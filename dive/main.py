@@ -9,6 +9,7 @@ import nibabel as nib
 from dive.mask import Mask
 from dive.tract import Tract
 from dive.showman import Show
+import trx.trx_file_memmap as tmm
 from dive.csv_tocolors import Colors_csv
 from dive.helper import load_3dbrain, load_2dbrain, Colors, Mesh
 import distinctipy
@@ -153,8 +154,10 @@ def run_main():
         if len(args.tract)<=i:actor_tract = None
         else:
             if args.tract[i]!=None:
-                if str(args.tract[i]).split('.')[-1] == '.gz' or str(args.tract[i]).split('.')[-1] == 'zip':
+                if str(args.tract[i]).split('.')[-1] == 'gz' or str(args.tract[i]).split('.')[-1] == 'zip':
                     tract_image =  nib.streamlines.load(read_from_compressed(args.tract[i]))
+                elif str(args.tract[i]).split('.')[-1] == 'trx':
+                    tract_image =  tmm.load(args.tract[i])
                 else: tract_image = nib.streamlines.load(args.tract[i])
                 if not tract_image.header : print("The Track has no Header!") 
                 if flag_multple ==1 and args.tracts_paint==False:
