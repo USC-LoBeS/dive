@@ -23,7 +23,7 @@ def run_main():
     parser.add_argument('--tract',nargs='+', help='The corresponding tract file, if only tract is provided then Visualize it according to directions, if a multi labeled mask is given then loads it according to the same colors.')
     parser.add_argument('--mask',nargs='+',help='The corresponding mask/nii.gz file, if only 1 label is present then loads it as single color else multiple colors, each color according to the labels.')
     parser.add_argument('--output',help='Path for output, to save the screenshots, or direct output')
-    parser.add_argument('--background',default=1,type=int, help='Choice either black or white')
+    parser.add_argument('--background',default=0,type=int, help='Choice either black or white')
     parser.add_argument('--zoom',default=0.5,type=float,help='Zooming Factor for a standard view')
     parser.add_argument('--inter',help = 'Have a window of interactive file or just save the screenshots at the path provided.',default=1,type=int)
     parser.add_argument('--stats_csv',type=str,help='Provide path of a csv to visualize Mask')
