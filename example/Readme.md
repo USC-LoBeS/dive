@@ -68,12 +68,12 @@
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture3_2.png" width="480">
 
     ```
-    dive --tract example/UF_R.trx --colors_tract red
+    dive --tract example/UF_R.trx --colors_tract yellow
     ```
      <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture3_3.png" width="480">
 
     ```
-    dive --tract example/UF_R.tck --colors_tract yellow
+    dive --tract example/UF_R.tck --colors_tract red
     ```
     
 - [4] <strong>Rendering Multiple File Types :</strong> 
