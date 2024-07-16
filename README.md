@@ -152,29 +152,18 @@ Lobes - njahansh@usc.edu, narulas@usc.edu, bagari@usc.edu
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
 [contributors-url]: https://github.com/USC-LoBeS/DiVE/graphs/contributors
 [forks-shield]: https://github.com/USC-LoBeS/DiVE/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
 [issues-url]: https://github.com/USC-LoBeS/DiVE/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge -->
-<!-- [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt -->
-<!-- [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username -->
+
 [ui-image]: https://raw.githubusercontent.com/USC-LoBeS/dive/main/images/UI.png
 [fig1-image]: https://raw.githubusercontent.com/USC-LoBeS/dive/main/images/Figure_1.png
 
 [Fury.]: https://img.shields.io/badge/Fury-red?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
 [Fury-url]: https://fury.gl/latest/index.html
-
 [OpenGL.]: https://img.shields.io/badge/OpenGL-%235586A4?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
 [OpenGL-url]:https://www.opengl.org/
-
 [dist.]:https://img.shields.io/badge/distinctipy-blue?logo=https%3A%2F%2Ffury.gl%2Flatest%2F_static%2Fimages%2Flogo.svg
 [dist-url]: https://doi.org/10.5281/zenodo.3985191
-
 [pypi.]:https://img.shields.io/badge/pypi-v1.0-blue
 [pypi-url]: https://pypi.org/project/dive-mri/
