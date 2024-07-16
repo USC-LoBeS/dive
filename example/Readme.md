@@ -65,6 +65,16 @@
     ```
     dive --tract example/CST_R.trk --colors_tract red
     ```
+    <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture3_2.png" width="480">
+
+    ```
+    dive --tract example/UF_R.trx --colors_tract red
+    ```
+     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture3_3.png" width="480">
+
+    ```
+    dive --tract example/UF_R.tck --colors_tract yellow
+    ```
     
 - [4] <strong>Rendering Multiple File Types :</strong> 
     To render multiple files types tegether the user can specify the tracts and masks together if they are given with the same index and mask is a multi-labeled mask then the mask's colormap is applied to the Tracts.
