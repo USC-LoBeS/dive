@@ -57,7 +57,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
- Diffusion Visualization and Explorer (DiVE) is a tool designed for visualizing medical imaging data. It allows users to visualize tractography in various formats (TRK, TCK, VTK), binary masks in NIfTI format, and meshes in VTK format. Users also have the flexibility to load multiple Regions of Interest (ROIs) in different combinations, whether they are exclusively of one type (mesh, mask, or tract) or a combination of types. Additionally, users can toggle between 3D visualization and saving the output by specifying a designated path.
+ Diffusion Visualization and Explorer (DiVE) is a tool designed for visualizing medical imaging data. It allows users to visualize tractography in various formats (TRK, TCK, TRX, VTK), binary masks in NIfTI format, and meshes in VTK format. Users also have the flexibility to load multiple Regions of Interest (ROIs) in different combinations, whether they are exclusively of one type (mesh, mask, or tract) or a combination of types. Additionally, users can toggle between 3D visualization and saving the output by specifying a designated path.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
