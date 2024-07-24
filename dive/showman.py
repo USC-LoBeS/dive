@@ -1805,7 +1805,7 @@ class Show:
         if self.slice_actor:
              cut = int(self.brain_2d[1]) if self.brain_2d!=None else self.slice_actor.shape[1] // 2
              self.slice_actor.display(None,cut,None)
-        fname=str(output_path)+"_coronal"+".png"
+        fname=str(output_path)+"_coronal_flipped"+".png"
         window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
 
 
