@@ -6,12 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "dive-mri"
 version = "1.0.3"
 authors = [
-  { name="Siddharth Narula", email="narulas@usc.edu" },
-  { name="Iyad Ba Gari", email="iyad.bagari@usc.edu" }
+  { name="Iyad Ba Gari", email="bagari@usc.edu" }, { name="Siddharth Narula", email="narulas@usc.edu" }
 ]
 maintainers = [
-  { name="Siddharth Narula", email="narulas@usc.edu" },
-  { name="Iyad Ba Gari", email="iyad.bagari@usc.edu" }
+  { name="Iyad Ba Gari", email="bagari@usc.edu" }, { name="Siddharth Narula", email="narulas@usc.edu" }  
 ]
 
 description = "The Diffusion Visualization Explorer (DiVE) Tool"
