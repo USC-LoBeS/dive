@@ -3,8 +3,8 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dive"
-version = "1.0.2"
+name = "dive-mri"
+version = "1.0.3"
 authors = [
   { name="Siddharth Narula", email="narulas@usc.edu" },
   { name="Iyad Ba Gari", email="iyad.bagari@usc.edu" }
