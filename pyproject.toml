@@ -1,0 +1,67 @@
+import os
+
+if os.name == 'posix':  # This checks if the OS is Linux or macOS (Unix-like systems)
+    build_system_requires = ["setuptools", "wheel"]
+    build_backend = "setuptools.build_meta"
+    dependencies = [
+        'distinctipy>=1.2.3',
+        'fury>=0.9.0',
+        'matplotlib',
+        'nibabel',
+        'numpy',
+        'ordered-set',
+        'pandas',
+        'pyvista',
+        'trx-python>0.2.9',
+        'vtk>=9.3.0',
+        'webcolors',
+        'setuptools>=69.5'
+    ]
+else:
+    build_system_requires = ["setuptools", "wheel"]
+    build_backend = "setuptools.build_meta"
+    
+    dependencies = [
+        'distinctipy>=1.3',
+        'fury>=0.9.0',
+        'matplotlib',
+        'nibabel',
+        'numpy',
+        'ordered-set',
+        'pandas',
+        'pyvista',
+        'trx-python>0.2.9',
+        'setuptools==72.2.0'
+    ]
+
+[project]
+name = "dive-mri"
+version = "1.0.4"
+
+
+description = "The Diffusion Visualization Explorer (DiVE) Tool"
+keywords = ["Diffusion MRI", "along-tract visualization", "tractography", "white matter bundle"]
+ 
+readme = "README.md"
+
+
+license = { file="LICENSE.txt" }
+requires-python = ">=3.9"
+classifiers = [
+    'Intended Audience :: Science/Research',
+    'Programming Language :: Python :: 3',
+    'Operating System :: Unix'
+]
+
+[project.urls]
+Repository = "https://github.com/USC-LoBeS/dive"
+
+[project.scripts]
+dive = "dive.main:run_main"
+
+[tool.setuptools.package-data]
+dive = ["*.png"]
+
+[tool.setuptools.packages.find]
+include = ["dive*"]
+exclude = ["LICENSES*", "example*", "images*"]
