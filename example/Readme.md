@@ -5,19 +5,19 @@
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture1.png" width="480">
 
     ```
-    dive --mask /example/IFOF_R_global_all.nii.gz
+    dive --mask ./example/IFOF_R_global_all.nii.gz
     ```
 
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture2.png" width="480">
 
     ```
-    dive --mask /example/IFOF_R_global_all.nii.gz --colors_mask red
+    dive --mask ./example/IFOF_R_global_all.nii.gz --colors_mask red
     ```
 
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture2_2.png" width="480">
 
     ```
-    dive --mask example/IFOF_R_global_all.nii.gz example/CST_R_global_all.nii.gz --glass_brain example/ICBM152_adult.WM.nii.gz --background 1 
+    dive --mask ./example/IFOF_R_global_all.nii.gz ./example/CST_R_global_all.nii.gz --glass_brain ./example/ICBM152_adult.WM.nii.gz --background 1 
     ```
     
     For Multi Labeled Mask use the same --mask argument, also user can specify a statistics file using a csv file.
@@ -26,13 +26,13 @@
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture1_1.png" width="480">
 
     ```
-    dive --mask example/DSI_CST_R_local_all.nii.gz --brain_2d example/mni_icbm152_t1_tal_nlin_sym_09a.nii.gz
+    dive --mask ./example/DSI_CST_R_local_all.nii.gz --brain_2d ./example/mni_icbm152_t1_tal_nlin_sym_09a.nii.gz
 
     ```
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture1_withcmap_stats.png" width="480">
 
     ```
-    dive --mask example/DSI_CST_R_local_all.nii.gz --stats_csv example/stat_template.csv --brain_2d example/mni_icbm152_t1_tal_nlin_sym_09a.nii.gz --range_value -1 1 --threshold 0.5 --map viridis
+    dive --mask ./example/DSI_CST_R_local_all.nii.gz --stats_csv ./example/stat_template.csv --brain_2d ./example/mni_icbm152_t1_tal_nlin_sym_09a.nii.gz --range_value -1 1 --threshold 0.5 --map viridis
     ```
 
 - [2] <strong>Rendering Mesh :</strong> 
@@ -42,13 +42,13 @@
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture3.png" width="480">
 
     ```
-    dive --mesh /example/IFOF_R_skeleton.vtk
+    dive --mesh ./example/IFOF_R_skeleton.vtk
     ```
 
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture4.png" width="480">
 
     ```
-    dive --mesh /example/IFOF_R_skeleton.vtk --colors_mesh blue
+    dive --mesh ./example/IFOF_R_skeleton.vtk --colors_mesh blue
     ```
 
 - [3] <strong>Rendering Tract :</strong> 
@@ -57,23 +57,23 @@
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture5.png" width="480">
 
     ```
-    dive --tract example/CST_R.trk
+    dive --tract ./example/CST_R.trk
     ```
 
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture6.png" width="480">
 
     ```
-    dive --tract example/CST_R.trk --colors_tract red
+    dive --tract ./example/CST_R.trk --colors_tract red
     ```
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture3_2.png" width="480">
 
     ```
-    dive --tract example/UF_R.tck --colors_tract yellow
+    dive --tract ./example/UF_R.tck --colors_tract yellow
     ```
      <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture3_3.png" width="480">
 
     ```
-    dive --tract example/UF_R.trx --colors_tract red
+    dive --tract ./example/UF_R.trx --colors_tract red
     ```
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture3_Center.png" width="480">
 
@@ -89,7 +89,7 @@
     <img src="https://raw.githubusercontent.com/USC-LoBeS/dive/main/example/images/Picture7_1.png" width="480">
 
     ```
-    dive --mask example/DSI_CST_R_local_all.nii.gz --stats_csv example/stat_template.csv --tract example/CST_R.trk --glass_brain example/ICBM152_adult.WM.nii.gz --background 1 --output example/test_op
+    dive --mask ./example/DSI_CST_R_local_all.nii.gz --stats_csv ./example/stat_template.csv --tract ./example/CST_R.trk --glass_brain ./example/ICBM152_adult.WM.nii.gz --background 1 --output ./example/test_op
     ```
 
 
