@@ -186,7 +186,7 @@ def run_main():
             else: tract_image = nib.streamlines.load(args.tract[i])
 
             ## Used for color N segments of the bundle along its length Based on the csv file (stats_csv) {Not tested/implemented for TRX}
-            if flag_multiple ==1 and args.tracts_paint==False:
+            if flag_multiple ==1:
                 bundle_caller = Tract(bundle = tract_image.streamlines,tw=args.width_tract)
                 if args.stats_csv!=None and args.stats_csv[i]!=None:
                     bundle_caller.selt_colormap(instance=color_map_mask)

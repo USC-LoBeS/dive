@@ -1,3 +1,4 @@
+import os
 import re
 import subprocess
 import numpy as np
@@ -11,7 +12,7 @@ from dive.csv_tocolors import Colors_csv
 from fury.data import read_viz_icons
 from vtkmodules.vtkCommonColor import vtkNamedColors
 from fury.ui.core import UI,Button2D, Disk2D, Rectangle2D, TextBlock2D
-import os
+
 selected_item = None
 class Panel2D(UI):
     """A 2D UI Panel.
@@ -1741,7 +1742,7 @@ class Show:
                 if self.slider_cut==None:
                     cut = int(self.brain_2d[0]) if self.brain_2d!=None else self.slice_actor.shape[0] // 2
                 else: cut = self.slider_cut
-                self.slice_actor.display(cut, None, None)
+                self.slice_actor.display(x=cut, y=None, z=None)
                 self.scene.add(self.slice_actor)
         if self.ori==2:
             self.scene.set_camera(position=(0, 0, -400), focal_point=(0, 0, 0), view_up=(0, 1, 0))
@@ -1750,7 +1751,7 @@ class Show:
                 if self.slider_cut==None:
                     cut = int(self.brain_2d[2]) if self.brain_2d!=None else self.slice_actor.shape[2] // 2
                 else:  cut = self.slider_cut 
-                self.slice_actor.display(None,None,cut)
+                self.slice_actor.display(x=None,y=None,z=cut)
                 self.scene.add(self.slice_actor)
         if self.ori==3:
             self.scene.set_camera(position=(0, 400, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
@@ -1759,7 +1760,7 @@ class Show:
                 if self.slider_cut==None:
                     cut = int(self.brain_2d[1]) if self.brain_2d!=None else self.slice_actor.shape[1] // 2
                 else: cut = self.slider_cut
-                self.slice_actor.display(None,cut, None)
+                self.slice_actor.display(x=None,y=cut, z=None)
                 self.scene.add(self.slice_actor)
 
     def saveresults(self,output_path):
@@ -1768,14 +1769,14 @@ class Show:
         self.scene.set_camera(position=(400, 0, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
         if self.slice_actor:
              cut = int(self.brain_2d[0]) if self.brain_2d!=None else self.slice_actor.shape[0] // 2
-             self.slice_actor.display(cut,None,None)
+             self.slice_actor.display(x=cut,y=None,z=None)
         fname=str(output_path)+"_sagittal"+".png"
         window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
 
         self.scene.set_camera(position=(-400, 0, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
         if self.slice_actor:
              cut = int(self.brain_2d[0]) if self.brain_2d!=None else self.slice_actor.shape[0] // 2
-             self.slice_actor.display(cut,None,None)
+             self.slice_actor.display(x=cut,y=None,z=None)
         fname=str(output_path)+"_sagittal_flipped"+".png"
         window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
 
@@ -1783,28 +1784,28 @@ class Show:
         self.scene.set_camera(position=(0, 0, -400), focal_point=(0, 0, 0), view_up=(0, 1, 0))
         if self.slice_actor:
              cut = int(self.brain_2d[2]) if self.brain_2d!=None else self.slice_actor.shape[2] // 2
-             self.slice_actor.display(None,None,cut)
+             self.slice_actor.display(x=None,y=None,z=cut)
         fname=str(output_path)+"_axial"+".png"
         window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
 
         self.scene.set_camera(position=(0, 0, 400), focal_point=(0, 0, 0), view_up=(0, 1, 0))
         if self.slice_actor:
              cut = int(self.brain_2d[2]) if self.brain_2d!=None else self.slice_actor.shape[2] // 2
-             self.slice_actor.display(None,None,cut)
+             self.slice_actor.display(x=None,y=None,z=cut)
         fname=str(output_path)+"_axial_flipped"+".png"
         window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
 
         self.scene.set_camera(position=(0, 400, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
         if self.slice_actor:
              cut = int(self.brain_2d[1]) if self.brain_2d!=None else self.slice_actor.shape[1] // 2
-             self.slice_actor.display(None,cut,None)
+             self.slice_actor.display(x=None,y=cut,z=None)
         fname=str(output_path)+"_coronal"+".png"
         window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
 
         self.scene.set_camera(position=(0, -400, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
         if self.slice_actor:
              cut = int(self.brain_2d[1]) if self.brain_2d!=None else self.slice_actor.shape[1] // 2
-             self.slice_actor.display(None,cut,None)
+             self.slice_actor.display(x=None,y=cut,z=None)
         fname=str(output_path)+"_coronal_flipped"+".png"
         window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
 
@@ -1992,11 +1993,11 @@ class Show:
         self.slider_cut = int(slider.value)
         self.scene.rm(self.slice_actor)
         if self.ori==1:
-            self.slice_actor.display(self.slider_cut,None,None)
+            self.slice_actor.display(x=self.slider_cut,y=None,z=None)
         elif self.ori==2:
-            self.slice_actor.display(None,None,self.slider_cut)
+            self.slice_actor.display(x=None,y=None,z=self.slider_cut)
         elif self.ori==3:
-            self.slice_actor.display(None,self.slider_cut,None)
+            self.slice_actor.display(x=None,y=self.slider_cut,z=None)
         self.scene.add(self.slice_actor)
 
 
