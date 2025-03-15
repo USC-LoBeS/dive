@@ -1856,10 +1856,8 @@ class Show:
             slicer_opacity = slider.value
             for i in range(self.selected_actor.GetParts().GetNumberOfItems()):
                 self.selected_actor.GetParts().GetItemAsObject(i).GetProperty().SetOpacity(slicer_opacity)
-                # self.selected_actor.GetParts().GetItemAsObject(i).GetProperty().SetOpacity(0.1)      ## Iyad
         else:
             self.selected_actor.GetProperty().SetOpacity(slider.value)
-            # self.selected_actor.GetProperty().SetOpacity(0.1)       ## Iyad
     
     
     
