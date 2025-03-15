@@ -1,8 +1,10 @@
 import io
 import sys
 import gzip
+import random
 import zipfile
 import argparse
+import distinctipy
 import numpy as np
 import pyvista as pv
 import nibabel as nib
@@ -13,37 +15,35 @@ import trx.trx_file_memmap as tmm
 from dive.csv_tocolors import Colors_csv
 from nibabel.streamlines import ArraySequence
 from dive.helper import load_3dbrain, load_2dbrain, Colors, Mesh
-import distinctipy
-import random
 random.seed(1)
-# from dipy.io.image import load_nifti
+
 
 def run_main():
     formatter = argparse.ArgumentDefaultsHelpFormatter
-    parser = argparse.ArgumentParser(description='Diffusion Visualization Analytics (diVE) BY Siddharth Narula, Iyad Ba Gari', formatter_class=formatter)
-    parser.add_argument('--mesh',nargs='+', help='Single or Multple VTK files')
-    parser.add_argument('--tract',nargs='+', help='The corresponding tract file, if only tract is provided then Visualize it according to directions, if a multi labeled mask is given then loads it according to the same colors.')
-    parser.add_argument('--mask',nargs='+',help='The corresponding mask/nii.gz file, if only 1 label is present then loads it as single color else multiple colors, each color according to the labels.')
-    parser.add_argument('--output',help='Path for output, to save the screenshots, or direct output')
-    parser.add_argument('--background',default=0,type=int, help='Choice either black or white')
-    parser.add_argument('--zoom',default=0.5,type=float,help='Zooming Factor for a standard view')
-    parser.add_argument('--inter',help = 'Have a window of interactive file or just save the screenshots at the path provided.',default=1,type=int)
-    parser.add_argument('--stats_csv',type=str,help='Provide path of a csv to visualize Mask')
-    parser.add_argument('--threshold',type=float,default=0.05)
-    parser.add_argument('--log_p_value',default=False,type=bool)
-    parser.add_argument('--range_value',help='Min and Max values for the value range',nargs=2,type=float,default=None)
-    parser.add_argument('--map',help='Colormap name from matplotlib',type=str, default = 'RdBu')
-    parser.add_argument('--colors_tract',type=str,help='List of Colors for Tract')
-    parser.add_argument('--colors_mask',type=str,help='List of Colors for Mask')
-    parser.add_argument('--colors_mesh',type=str,help='List of Colors for Mesh')
-    parser.add_argument('--width_tract',type=int,help='Specify the width of stremline', default=1)
-    parser.add_argument('--brain_2d',nargs='+',help='A nifti.gz file for the brain you want to put at the back of tracts.')
-    parser.add_argument('--glass_brain',help = 'A nifti.gz for the brain file to be loaded as a 3d brain.')
-    parser.add_argument('--color_map',default=None,help='A text file with colors for each ROI')   
-    parser.add_argument('--streamlines_segmentations',default=False,type=str,help='Run with Segmented Streamlines using Center')
-    parser.add_argument('--number_of_streams',default=False,type=str,help='Number of Streams for Streamlines')
-    
-   
+    parser = argparse.ArgumentParser(description='Diffusion Visualization Analytics (diVE)', formatter_class=formatter)
+    parser.add_argument('--mesh', nargs='+', help='Single or Multple VTK files')
+    parser.add_argument('--tract', nargs='+', help='A white matter bundle in TRK, TCK, or TRX format')
+    parser.add_argument('--mask', nargs='+', help='A NIfTI binary file can be a single label or multiple labels') 
+    parser.add_argument('--output', default=None, help='Path to save screenshots e.g., /home/file_name (--inter should be 0)')
+    parser.add_argument('--background', type=int, default=0, help='Choice either black or white Background color choice: 0 for black, 1 for white')
+    parser.add_argument('--zoom', type=float, default=0.5, help='Zooming factor for a standard view')
+    parser.add_argument('--inter', type=int, default=1, help = 'Enable interactive mode (1) or save screenshots directly (0)')
+    parser.add_argument('--stats_csv',type=str,help='Path to a CSV file for mask visualization')
+    parser.add_argument('--threshold',type=float,default=0.05, help='Threshold value for visualization')
+    parser.add_argument('--log_p_value', type=bool, default=False, help='Use logarithmic p-values (True/False)')
+    parser.add_argument('--range_value', nargs=2, type=float, default=None, help='Minimum and maximum values for the value range')
+    parser.add_argument('--map', help='Colormap name from Matplotlib', type=str, default = 'RdBu')
+    parser.add_argument('--colors_tract', type=str, help='List of colors for tracts')
+    parser.add_argument('--colors_mask', type=str, help='List of colors for masks')
+    parser.add_argument('--colors_mesh', type=str, help='List of colors for meshes')
+    parser.add_argument('--width_tract', type=int, default=1, help='Specify the width of the streamlines')
+    parser.add_argument('--brain_2d', nargs='+', help='A NIfTI file for a 2D brain image')
+    parser.add_argument('--glass_brain', help = 'A NIfTI binary file for a 3D brain visualization.')
+    parser.add_argument('--color_map', default=None, help='A text file specifying colors for each ROI')   
+    parser.add_argument('--segmentation_method', type=str, default=False, help="Segmentation method to use (e.g., 'centerline' or 'MeTA').")
+    parser.add_argument('--segments', type=str, default=False, help='Number of segments for the segmented streamlines along the length')
+
+
     if len(sys.argv) == 1:
         parser.print_help()
         return
