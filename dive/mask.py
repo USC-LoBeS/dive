@@ -22,9 +22,9 @@ class Mask:
             nifti_real = self.pts > 1
         
         if self.colors:
-            volume_actor = actor.contour_from_roi(nifti_real,affine=self.sys_affine,color=self.colors)
+            volume_actor = actor.contour_from_roi(nifti_real,affine=self.sys_affine,color=self.colors,opacity=1)
         else:
-            volume_actor = actor.contour_from_roi(nifti_real,affine=self.sys_affine,color=[0.5,0.5,0.5])
+            volume_actor = actor.contour_from_roi(nifti_real,affine=self.sys_affine,color=[0.5,0.5,0.5],opacity=1)
         return volume_actor
     
     def multi_label(self):
@@ -36,6 +36,6 @@ class Mask:
         self.colormap = np.asarray(self.colormap)
         for i, roi in enumerate(roi_dict):
             roi_data = np.isin(self.pts,roi).astype(int)
-            roi_surfaces = actor.contour_from_roi(roi_data,self.sys_affine,color=self.colormap[i])
+            roi_surfaces = actor.contour_from_roi(roi_data,affine=self.sys_affine,color=self.colormap[i],opacity=1)
             unique_roi_surfaces.AddPart(roi_surfaces)
         return unique_roi_surfaces,self.colormap

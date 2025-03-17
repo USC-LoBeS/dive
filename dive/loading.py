@@ -8,6 +8,7 @@ import nibabel as nib
 from dive.tract import Tract
 from dive.helper import  Colors
 import trx.trx_file_memmap as tmm
+
 class load:
     def __init__(self):
         self.index_mask = 0

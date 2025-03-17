@@ -1,15 +1,12 @@
+import os
 import matplotlib
-import matplotlib.colors as mcolors
-import matplotlib.pyplot as plt
 import collections
 import numpy as np
 import pandas as pd
 from math import isnan
-import os
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 
-
-## Read this reference to update normalization ...
-## https://matplotlib.org/stable/api/colors_api.html
 
 class Colors_csv():
     def __init__(self,stats_csv=None):
@@ -17,18 +14,19 @@ class Colors_csv():
         self.colors_from_csv = []
         self.stats_csv = stats_csv
         self.map = None
-    def load_csv(self): self.df = pd.read_csv(self.stats_csv)
+
+    def load_csv(self): 
+        self.df = pd.read_csv(self.stats_csv)
+
     def intialize(self,log_p_value=False):
         if log_p_value:
             self.df['P_value'] = -np.log10(self.df['P_value'])
             self.col_name = 'P_value'
         else:
-            self.col_name = 'Value'
-            
+            self.col_name = 'Value' 
         self.min_value = self.df[self.col_name].min()       
         self.max_value = self.df[self.col_name].max()  
 
-        
     def assign_colors(self,map,range_value=[],log_p_value=False,threshold=None,output=None,filename='_color_bar.pdf',group=0):
         self.map = map
         if group==0: self.load_csv()
@@ -65,23 +63,20 @@ class Colors_csv():
         self.colors_from_csv = np.asarray(self.colors_from_csv)
 
         ## Save the color bar images
-        
         fig, ax = plt.subplots(figsize=(6, 1))
-
-        print(self.df[self.col_name])
+        # print(self.df[self.col_name])
         if output!=None:
             sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
             sm.set_array([])
             cb = fig.colorbar(sm, cax=ax,orientation='horizontal') # 
             # cb.ax.tick_params(labelsize=10) 
             plt.savefig((output + filename) , bbox_inches='tight', dpi=300)
-
         return self.colors_from_csv
-    
-    def grouped_colors(self):
+
+    def assign_colors_grp(self,map,range_value=[],log_p_value=False,threshold=None,output=None,filename='_color_bar.pdf',group=1):
         self.load_csv()
         grouped = self.df.groupby('Name')
-
         for name, group in grouped:
-            self.df = grouped
-            return self.assign_colors(self,map,range_value=[],log_p_value=False,threshold=None,output=None,group=1)
+            self.df = group
+            # print(name)
+            return self.assign_colors(map = map,range_value=range_value,log_p_value=log_p_value,threshold=threshold,output=output,filename=filename,group=1)

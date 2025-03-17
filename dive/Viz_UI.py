@@ -46,6 +46,7 @@ def choose_output_path():
         return None
 
 mask_csv_val,tract_csv_val = [],[]
+
 ## CSV functions
 def csv_mask():
     global mask_csv_val
@@ -68,6 +69,7 @@ def p_val():
         label_pval.config(text="Do log for pval")
     else:
         label_pval.config(text="Don't apply")
+        
 def submit():
     global command
     global nifti_li,track_li,vtk_li,ouptput_file_name,mask_csv_val,tract_csv_val,threshold_tract
@@ -196,10 +198,7 @@ color_vtk_value = ttk.Entry(input_frame4,textvariable=color_vtk_value_val)
 color_vtk_value.grid(row=2, column=1, padx=1, pady=1)
 
 
-
 input_frame4.pack(pady=10)
 submit_button = ttk.Button(window,text='Submit',command=submit)
 submit_button.pack()
 window.mainloop()
-
-
