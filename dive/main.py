@@ -43,7 +43,6 @@ def run_main():
     parser.add_argument('--segmentation_method', type=str, default=False, help="Segmentation method to use (e.g., 'centerline' or 'MeTA').")
     parser.add_argument('--segments', type=str, default=False, help='Number of segments for the segmented streamlines along the length')
 
-
     if len(sys.argv) == 1:
         parser.print_help()
         return
@@ -52,17 +51,14 @@ def run_main():
         interactive = False
     else: interactive = True
 
-    rois = {}
-
     def read_from_compressed(file = None):
         """
+        This function reads compressed (zip or gz) TRK or TCK files and returns an object 
+        that can be read using nibabel.
         Args:
             file: path to the compressed file
-
         Returns:
             img: file object to be read by nibabel
-        This function reads compressed (zip or gz) TRK or TCK files and returns an object 
-        that can be read using nibabel
         """
         zip_type = file.split('.')[-1]
         if zip_type == 'gz':
@@ -77,7 +73,6 @@ def run_main():
             print("Wrong zip type. Either '.gz' or '.zip' ")
         return img
 
-
     def get_file_name(lst):
         result = []
         for item in lst:
@@ -89,7 +84,6 @@ def run_main():
             result.append(None)
 
         return result
-
 
     colors_caller = Colors()
     tract_color_list = colors_caller.string_to_list(input_string = args.colors_tract) if args.colors_tract else  []
@@ -112,11 +106,13 @@ def run_main():
     dict_disp['Mask'] = get_file_name(args.mask)
     dict_disp['Tract'] = get_file_name(args.tract)
     dict_disp['Mesh'] = get_file_name(args.mesh)
+
     if args.brain_2d is None:
         dict_disp['Brain'] = get_file_name([args.glass_brain])
     else:
-        dict_disp['Brain'] = get_file_name([args.glass_brain,args.brain_2d[0]] )
+        dict_disp['Brain'] = get_file_name([args.glass_brain,args.brain_2d[0]])
 
+    rois = {}
     for i in range(num_max):
         
         flag_multiple = 0
@@ -126,7 +122,6 @@ def run_main():
                 cc = Colors_csv(list_csvs[i])
                 color_map_mask = cc.assign_colors(map=args.map,range_value=args.range_value,log_p_value=args.log_p_value,threshold=args.threshold, output=args.output)
         
-
         ## Load masks
         if i < len(args.mask) and args.mask[i] is not None:
             mask = nib.load(args.mask[i])
@@ -136,7 +131,6 @@ def run_main():
                 flag_multiple = 1
                 #Load based on stats_csv
                 if (args.stats_csv!=None and len(list_csvs)>i):
-
                     mask_caller = Mask(mask,colormap=color_map_mask)
                     actor_mask,distinctpy_colormask = mask_caller.multi_label()
                     main_scene.add(actor_mask)
@@ -197,14 +191,20 @@ def run_main():
                 rois[dict_disp['Tract'][i]] = actor_bundle
 
             ## Used for color N segments of the bundle along its length {Not tested/implemented for TRX}
-            elif (args.streamlines_segmentations) =="Center":
-                bundle_caller = Tract(bundle = tract_image.streamlines,tw=args.width_tract)
+            elif (args.streamlines_segmentations) =="MeTA" or (args.streamlines_segmentations) =="centerline" :
+                
+                if (np.array_equal(tract_image.affine, np.eye(4))): 
+                    print("A reference image is needed since the tract you provided has affine with no traslation will use brain_2d file as the affine")
+                    aff = nib.load(args.brain_2d[0]).affine
+                else: aff= tract_image.affine
+                
+                bundle_caller = Tract(bundle = tract_image,tw=args.width_tract,bundle_shape = tract_image.header['dimensions'],aff=aff)
                 
                 if args.stats_csv:
                     color_map_mask_tracts_paint = color_map_mask
                     bundle_caller.selt_colormap(instance=color_map_mask_tracts_paint)
 
-                actor_bundle = bundle_caller.tracts_paint(method = "Center",number_of_streams=int(args.number_of_streams))
+                actor_bundle = bundle_caller.tracts_paint(method = args.streamlines_segmentations,number_of_streams=int(args.number_of_streams))
                 main_scene.add(actor_bundle)
                 rois[dict_disp['Tract'][i]] = actor_bundle 
 
@@ -219,24 +219,24 @@ def run_main():
                 if not hasattr(tract_image, 'groups') or len(tract_image.groups) == 0:
                     ## Load the bundle with directional color (for TRX with only one bundle, no groups)
                     ## Support other tractography formats
-                    
                     bundle_caller = Tract(bundle = tract_image.streamlines,tw=args.width_tract)
                     actor_bundle = bundle_caller.dirrection_color()
                     main_scene.add(actor_bundle)
                     rois[dict_disp['Tract'][i]] = actor_bundle
                 else:
                     ## Special case for multiple bundles in a TRX file 
-                    color_map_mask = distinctipy.get_colors(len(tract_image.groups))
+                    if args.stats_csv==None:
+                        color_map_mask = distinctipy.get_colors(len(tract_image.groups))
 
                     for index, (group_name, group_indices) in enumerate(tract_image.groups.items()):
                         group_streamlines = ArraySequence([tract_image.streamlines[idx] for idx in group_indices])
-                        #HEREEE should work
+                       # need to test
                         if args.stats_csv:
-                            color_map_mask[index] = cc.assign_colors(map=args.map,range_value=args.range_value,log_p_value=args.log_p_value,threshold=args.threshold, output=args.output,group=1)
+                            color_map_mask = []
+                            color_map_mask[index] = cc.assign_colors_grp(map=args.map,range_value=args.range_value,log_p_value=args.log_p_value,threshold=args.threshold, output=args.output,group=1)
                         group_tract_caller = Tract(bundle = group_streamlines,tw=args.width_tract,color_list=color_map_mask[index])
                         group_actor_tract = group_tract_caller.single_color()
                         ## Add the actor to the main scene and rois dictionary
-                        
                         updated_name = f"{dict_disp['Tract'][i]}_{group_name}"
                         prefix = f"{dict_disp['Tract'][i]}_"
                         if updated_name.startswith(prefix):
@@ -247,7 +247,7 @@ def run_main():
                     ## Remove the initial entry of Tract if there are multiple groups
                     if len(tract_image.groups) > 0 and len(dict_disp['Tract']) > len(tract_image.groups):
                         dict_disp['Tract'].pop(i)
-
+                        
 
         ## Load Mesh files:
         if i < len(args.mesh) and args.mesh[i] is not None:
