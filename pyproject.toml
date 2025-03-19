@@ -33,7 +33,8 @@ dependencies = [
     'vtk>=9.3.0',
     'webcolors',
     'setuptools>=69.5',
-    'dipy'
+    'dipy',
+    'tslearn'
 ]
 
 [project.urls]
