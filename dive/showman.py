@@ -163,8 +163,6 @@ class Panel2D(UI):
 
             self.update_border_coords()
 
-
-
     def _set_position(self, coords):
         """Set the lower-left corner position of this UI component.
 
@@ -181,8 +179,6 @@ class Panel2D(UI):
     def set_visibility(self, visibility):
         for element in self._elements:
             element.set_visibility(visibility)
-
-
 
     @property
     def color(self):
@@ -328,8 +324,6 @@ class Panel2D(UI):
         for key in self.borders.keys():
             self.update_element(self.borders[key], self.border_coords[key])
 
-
-
     @property
     def border_color(self):
         sides = ['left', 'right', 'top', 'bottom']
@@ -382,7 +376,6 @@ class Panel2D(UI):
             self.borders[side].height = border_width
         else:
             raise ValueError(f'{side} not a valid border side')
-
 
 class ComboBox2D(UI):
     """UI element to create drop-down menus.
@@ -585,9 +578,6 @@ class ComboBox2D(UI):
         self.drop_down_button.resize(self.drop_button_size)
         self.drop_down_menu.resize(self.drop_menu_size)
 
-
-
-
     def _set_position(self, coords):
         """Set the lower-left corner position of this UI component.
 
@@ -661,7 +651,6 @@ class ComboBox2D(UI):
             self._selection_ID = None
             self.drop_down_menu.set_visibility(False)
 
-
     def select_option_callback(self, i_ren, _obj, listboxitem):
         """Select the appropriate option
 
@@ -706,8 +695,6 @@ class ComboBox2D(UI):
         combobox : :class:`ComboBox2D`
 
         """
-        
-
         self._menu_visibility = not self._menu_visibility
         self.drop_down_menu.set_visibility(self._menu_visibility)
         self.drop_down_button.next_icon()
@@ -983,8 +970,6 @@ class Option_Rem(UI):
 
         self.on_change = lambda obj: None
 
-
-
     def _setup(self):
         """Setup this UI component."""
         # Option's button
@@ -1053,8 +1038,6 @@ class Option_Rem(UI):
         self.checked = False
         self.button.set_icon_by_name('unchecked')
 
-
-
 class Checkbox(UI):
 
     """A 2D set of :class:'Option' objects.
@@ -1104,8 +1087,6 @@ class Checkbox(UI):
         self.checked_labels = list(checked_labels)
         super(Checkbox, self).__init__(position=position)
         self.on_change = lambda checkbox: None
-
-
 
     def _setup(self):
         """Setup this UI component."""
@@ -1204,7 +1185,6 @@ class Checkbox(UI):
         """Get the padding between options."""
         return self._padding
 
-
 class RadioButton(Checkbox):
     """A 2D set of :class:'Option' objects.
     Only one option can be selected.
@@ -1258,8 +1238,6 @@ class RadioButton(Checkbox):
             font_family=font_family,
             checked_labels=checked_labels,
         )
-
-
 
     def _handle_option_change(self, option):
         for option_ in self.options.values():
@@ -1402,8 +1380,6 @@ class LineSlider2D(UI):
         self.value = initial_value
         self.update()
 
-
-
     def _setup(self):
         """Setup this UI component.
 
@@ -1532,8 +1508,6 @@ class LineSlider2D(UI):
             self.handle.center = (self.track.center[0], y_position)
         self.update()  # Update information.
 
-
-
     @property
     def value(self):
         return self._value
@@ -1633,7 +1607,6 @@ class LineSlider2D(UI):
         i_ren.force_render()
         i_ren.event.abort()  # Stop propagating the event.
 
-
     def handle_release_callback(self, i_ren, _vtkactor, _slider):
         """Change color when handle is released.
 
@@ -1650,8 +1623,6 @@ class LineSlider2D(UI):
 
 
 class Show:
-
-
     def define_scene(self):
         """
         Defines and generate the output window
@@ -1663,8 +1634,6 @@ class Show:
         '''Setting the default Camera angle to Sagittal View'''
         self.scene.set_camera(position=(400, 0, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
         return self.scene
-
-
 
     def build_label(self,text,title=False):
         """
@@ -1763,59 +1732,61 @@ class Show:
                 self.slice_actor.display(x=None,y=cut, z=None)
                 self.scene.add(self.slice_actor)
 
-    def saveresults(self,output_path):
-        '''If dont want to visualize in 3d'''
+    def set_fury_camera(self, scene, view='Axial'):
+        """
+        apply predefined camera settings to the selected view.
+        """
         self.scene.zoom(0.9)
-        self.scene.set_camera(position=(400, 0, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
+        EYE_SCALE = 400
+        CAM_SETTINGS = {
+            'Sagittal_L': {'position': (-EYE_SCALE, 0, 0), 'focal': (0, 0, 0), 'view_up': (0, 0, 1)},
+            'Sagittal_R': {'position': (EYE_SCALE, 0, 0), 'focal': (0, 0, 0), 'view_up': (0, 0, 1)},
+            'Coronal_A': {'position': (0, EYE_SCALE, 0), 'focal': (0, 0, 0), 'view_up': (0, 0, 1)},
+            'Coronal_P': {'position': (0, -EYE_SCALE, 0), 'focal': (0, 0, 0), 'view_up': (0, 0, 1)},
+            'Axial': {'position': (0, 0, EYE_SCALE), 'focal': (0, 0, 0), 'view_up': (0, 1, 0)},
+        }
+        if view in CAM_SETTINGS:
+            settings = CAM_SETTINGS[view]
+            scene.set_camera(
+                position=settings['position'],
+                focal_point=settings['focal'],
+                view_up=settings['view_up']
+            )
+        else:
+            print(f"Invalid view: {view}. Choose from {list(CAM_SETTINGS.keys())}.")
+
+    def saveresults(self, output_path, view='Coronal_A'):
+        """
+        Set camera view in FURY and save results as PNG images.
+        """
+        self.scene.zoom(0.9)
+        # apply the camera settings using the predefined view
+        self.set_fury_camera(self.scene, view)
+
+        ## get the correct slice to display based on the view
         if self.slice_actor:
-             cut = int(self.brain_2d[0]) if self.brain_2d!=None else self.slice_actor.shape[0] // 2
-             self.slice_actor.display(x=cut,y=None,z=None)
-        fname=str(output_path)+"_sagittal"+".png"
-        window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
+            if view in ['Sagittal_L', 'Sagittal_R']:
+                cut = int(self.brain_2d[0]) if self.brain_2d is not None else self.slice_actor.shape[0] // 2
+                self.slice_actor.display(x=cut, y=None, z=None)
+            elif view in ['Coronal_A', 'Coronal_P']:
+                cut = int(self.brain_2d[1]) if self.brain_2d is not None else self.slice_actor.shape[1] // 2
+                self.slice_actor.display(x=None, y=cut, z=None)
+            elif view in ['Axial']:
+                cut = int(self.brain_2d[2]) if self.brain_2d is not None else self.slice_actor.shape[2] // 2
+                self.slice_actor.display(x=None, y=None, z=cut)
 
-        self.scene.set_camera(position=(-400, 0, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
-        if self.slice_actor:
-             cut = int(self.brain_2d[0]) if self.brain_2d!=None else self.slice_actor.shape[0] // 2
-             self.slice_actor.display(x=cut,y=None,z=None)
-        fname=str(output_path)+"_sagittal_flipped"+".png"
-        window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
-
-
-        self.scene.set_camera(position=(0, 0, -400), focal_point=(0, 0, 0), view_up=(0, 1, 0))
-        if self.slice_actor:
-             cut = int(self.brain_2d[2]) if self.brain_2d!=None else self.slice_actor.shape[2] // 2
-             self.slice_actor.display(x=None,y=None,z=cut)
-        fname=str(output_path)+"_axial"+".png"
-        window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
-
-        self.scene.set_camera(position=(0, 0, 400), focal_point=(0, 0, 0), view_up=(0, 1, 0))
-        if self.slice_actor:
-             cut = int(self.brain_2d[2]) if self.brain_2d!=None else self.slice_actor.shape[2] // 2
-             self.slice_actor.display(x=None,y=None,z=cut)
-        fname=str(output_path)+"_axial_flipped"+".png"
-        window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
-
-        self.scene.set_camera(position=(0, 400, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
-        if self.slice_actor:
-             cut = int(self.brain_2d[1]) if self.brain_2d!=None else self.slice_actor.shape[1] // 2
-             self.slice_actor.display(x=None,y=cut,z=None)
-        fname=str(output_path)+"_coronal"+".png"
-        window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
-
-        self.scene.set_camera(position=(0, -400, 0), focal_point=(0, 0, 0), view_up=(0, 0, 1))
-        if self.slice_actor:
-             cut = int(self.brain_2d[1]) if self.brain_2d!=None else self.slice_actor.shape[1] // 2
-             self.slice_actor.display(x=None,y=cut,z=None)
-        fname=str(output_path)+"_coronal_flipped"+".png"
-        window.record(self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
+        fname = f"{output_path}_{view}.png"
+        window.record(scene=self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
+        print(f"Saved: {fname}")
 
 
-    def Showmanger_init(self,di,rois,interactive,output_path):
+    def Showmanger_init(self,di,rois,interactive,camera_view,output_path):
         global selected_item
         self.size_screen = (1200,900)
         self.show_m = window.ShowManager(scene=self.scene,title='DiVE',size = self.size_screen)
         if not interactive:
-            self.saveresults(output_path)
+            self.saveresults(output_path,view=camera_view)
+            
         else:
             self.slice_slider_label = self.build_label(text=str("Slice"))
             self.remove_button = Option_Rem('Remove')
@@ -1842,13 +1813,10 @@ class Show:
             self.show_m.render()
             self.show_m.start(multithreaded=True)
     
-
     def interact_selected_actor(self):
         global selected_item
         self.selected_actor = self.rois[selected_item]
-
-
-
+    
     def change_opacity(self,slider):
         global selected_item
         self.selected_actor = self.rois[selected_item]
@@ -1856,12 +1824,8 @@ class Show:
             slicer_opacity = slider.value
             for i in range(self.selected_actor.GetParts().GetNumberOfItems()):
                 self.selected_actor.GetParts().GetItemAsObject(i).GetProperty().SetOpacity(slicer_opacity)
-                # self.selected_actor.GetParts().GetItemAsObject(i).GetProperty().SetOpacity(0.1)      ## Iyad
         else:
             self.selected_actor.GetProperty().SetOpacity(slider.value)
-            # self.selected_actor.GetProperty().SetOpacity(0.1)       ## Iyad
-    
-    
     
     def handle_csv(self,command,flag):
             command_csv_path_mask = re.findall(r'--stats_csv\s(.*?)(?=\s--|$)', command)
@@ -1957,8 +1921,6 @@ class Show:
             completed_process = subprocess.run(['python', os.path.dirname(__file__)+'/Viz_UI.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
             selected_file_path = completed_process.stdout
             self.adding_elements(selected_file_path)
-
-    
 
     def remove_element(self,option):
         global selected_item

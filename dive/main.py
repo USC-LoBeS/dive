@@ -1,6 +1,7 @@
 import io
 import sys
 import gzip
+import json
 import random
 import zipfile
 import argparse
@@ -42,6 +43,7 @@ def run_main():
     parser.add_argument('--color_map', default=None, help='A text file specifying colors for each ROI')   
     parser.add_argument('--segmentation_method', type=str, default=False, help="Segmentation method to use (e.g., 'centerline' or 'MeTA').")
     parser.add_argument('--segments', type=str, default=False, help='Number of segments for the segmented streamlines along the length')
+    parser.add_argument('--cam_view',default=False,type=str,help='Path to JSON file with view specifications')
 
     if len(sys.argv) == 1:
         parser.print_help()
@@ -96,7 +98,6 @@ def run_main():
     if args.stats_csv:
         list_csvs = args.stats_csv.split(',')
 
-
     num_max = max(len(args.mask), len(args.mesh), len(args.tract))
     slice_actor = None
     glass_brain_actor = None
@@ -111,6 +112,25 @@ def run_main():
         dict_disp['Brain'] = get_file_name([args.glass_brain])
     else:
         dict_disp['Brain'] = get_file_name([args.glass_brain,args.brain_2d[0]])
+
+    if args.cam_view:
+        with open(args.cam_view, 'r') as f:
+            view_config = json.load(f)
+    else:
+        view_config = {}
+    matching_keys = []
+    for key in view_config:
+        bundle_name = dict_disp['Tract'][0] if dict_disp['Tract'] else None
+        if key in bundle_name:
+            matching_keys.append(key)
+    if matching_keys:
+        for mk in matching_keys:
+            camera_view = view_config[mk]
+            print(f"Using camera view: {camera_view}")
+    else:
+        camera_view = 'Coronal_A'
+        print(f"Default camera view: {camera_view}")
+
 
     rois = {}
     for i in range(num_max):
@@ -191,7 +211,7 @@ def run_main():
                 rois[dict_disp['Tract'][i]] = actor_bundle
 
             ## Used for color N segments of the bundle along its length {Not tested/implemented for TRX}
-            elif (args.streamlines_segmentations) =="MeTA" or (args.streamlines_segmentations) =="centerline" :
+            elif (args.segmentation_method) =="MeTA" or (args.segmentation_method) =="centerline" :
                 
                 if (np.array_equal(tract_image.affine, np.eye(4))): 
                     print("A reference image is needed since the tract you provided has affine with no traslation will use brain_2d file as the affine")
@@ -204,7 +224,7 @@ def run_main():
                     color_map_mask_tracts_paint = color_map_mask
                     bundle_caller.selt_colormap(instance=color_map_mask_tracts_paint)
 
-                actor_bundle = bundle_caller.tracts_paint(method = args.streamlines_segmentations,number_of_streams=int(args.number_of_streams))
+                actor_bundle = bundle_caller.tracts_paint(method = args.segmentation_method,number_of_streams=int(args.segments))
                 main_scene.add(actor_bundle)
                 rois[dict_disp['Tract'][i]] = actor_bundle 
 
@@ -247,7 +267,6 @@ def run_main():
                     ## Remove the initial entry of Tract if there are multiple groups
                     if len(tract_image.groups) > 0 and len(dict_disp['Tract']) > len(tract_image.groups):
                         dict_disp['Tract'].pop(i)
-                        
 
         ## Load Mesh files:
         if i < len(args.mesh) and args.mesh[i] is not None:
@@ -285,4 +304,4 @@ def run_main():
     if args.brain_2d and len(args.brain_2d)>1:
         ui_caller.slice_actorvalues(args.brain_2d[1:])
 
-    ui_caller.Showmanger_init(di=dict_disp,rois=rois,interactive=interactive,output_path=args.output)
+    ui_caller.Showmanger_init(di=dict_disp,rois=rois,interactive=interactive,camera_view=camera_view,output_path=args.output)
