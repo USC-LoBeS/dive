@@ -8,6 +8,7 @@ ouptput_file_name = []
 width_value = 1
 zoom_value = 0.5
 command = ""
+
 def nifti():
     global nifti_li
     filename = filedialog.askopenfilenames(initialdir = os.getcwd(),title = "Select Nifti Files",multiple=True, filetypes = (("Nifti files", "*.nii.*"),("Compressed","*.gz"),("all files","*.*")))

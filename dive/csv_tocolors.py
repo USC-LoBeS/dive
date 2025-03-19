@@ -7,7 +7,6 @@ from math import isnan
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
-
 class Colors_csv():
     def __init__(self,stats_csv=None):
         self.csv_flag = None

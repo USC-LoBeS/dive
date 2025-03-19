@@ -20,7 +20,7 @@ from dipy.tracking.streamline import length, transform_streamlines
 class load_3dbrain:
     def __init__(self,nifti) -> None:
         self.data = nifti.get_fdata()
-        self.threshold = 45
+        self.threshold = 50
         self.sigma = 0.5
         self.affine = nifti.affine
         self.glass_brain_actor = actor
@@ -28,7 +28,7 @@ class load_3dbrain:
     def loading(self):
         self.data[self.data<self.threshold] = 0
         smooth_data = gaussian_filter(self.data,sigma=self.sigma)
-        self.glass_brain_actor = actor.contour_from_roi(self.data,affine = self.affine,color=[0,0,0],opacity=0.08)
+        self.glass_brain_actor = actor.contour_from_roi(self.data,affine = self.affine,color=[0,0,0],opacity=0.04)      # 0.08
         # self.set_property()
         return self.glass_brain_actor
 
