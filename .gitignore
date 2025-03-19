@@ -1,5 +1,6 @@
 .DS_Store
-dive_mri.egg-info
-build
-bundles_camview.json
 Notes.txt
+build
+dive_mri.egg-info
+bundles_camview.json
+
