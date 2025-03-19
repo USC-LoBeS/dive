@@ -1774,8 +1774,10 @@ class Show:
             elif view in ['Axial']:
                 cut = int(self.brain_2d[2]) if self.brain_2d is not None else self.slice_actor.shape[2] // 2
                 self.slice_actor.display(x=None, y=None, z=cut)
-
-        fname = f"{output_path}_{view}.png"
+        
+        fname = f"{output_path}"
+        # fname = f"{output_path}_{view}.png"
+        
         window.record(scene=self.scene, out_path=fname, size=(2000, 2000), reset_camera=False)
         print(f"Saved: {fname}")
 
