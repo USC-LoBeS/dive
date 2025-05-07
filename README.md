@@ -112,7 +112,7 @@ The user can give a 3D region of interest label image in NIFTI format and the to
 <!-- CONTACT -->
 ## Contact
 
-Lobes - [Siddharth Narula](mailto:narulas@usc.edu), [Iyad Ba Gari](mailto:bagari@usc.edu), [Neda Janahshad](mailto:njahansh@usc.edu)
+Lobes - [Iyad Ba Gari](mailto:bagari@usc.edu), [Neda Janahshad](mailto:njahansh@usc.edu)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
