@@ -121,7 +121,7 @@ Lobes - [Iyad Ba Gari](mailto:bagari@usc.edu), [Neda Janahshad](mailto:njahansh@
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [Siddharth Narula, Iyad Ba Gari, Shruti P. Gadewar, Sunanda Somu, Neda Jahanshad, "Diffusion Visualization Explorer (DiVE) Organization for Human Brain Mapping (OHBM 2024) June 26,2024](https://ww6.aievolution.com/hbm2401/index.cfm?do=abs.viewAbstract&style=1&abstractID=2661)
+* [Siddharth Narula, Iyad Ba Gari, Shruti P. Gadewar, Sunanda Somu, Neda Jahanshad, "Diffusion Visualization Explorer (DiVE) Organization for Human Brain Mapping (OHBM 2024) June 26,2024](https://drive.google.com/file/d/1dsYLTrbfHmrlJNzih-CqbMye32q3sPfU/view)
 
 * [Iyad Ba Gari, Shayan Javid, Alyssa H. Zhu, Shruti P. Gadewar, Siddharth Narula, Abhinaav Ramesh, Sophia I. Thomopoulos et al. "Along-Tract Parameterization of White Matter Microstructure using Medial Tractography Analysis (MeTA)." In 2023 19th International Symposium on Medical Information Processing and Analysis (SIPAIM), pp. 1-5. IEEE, 2023.](https://doi.org/10.1109/SIPAIM56729.2023.10373540)
 
