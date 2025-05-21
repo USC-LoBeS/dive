@@ -121,6 +121,8 @@ def run_main():
     matching_keys = []
     for key in view_config:
         bundle_name = dict_disp['Tract'][0] if dict_disp['Tract'] else None
+        if not bundle_name:
+            bundle_name = dict_disp['Mask'][0] if dict_disp['Mask'] else None
         if key in bundle_name:
             matching_keys.append(key)
     if matching_keys:
@@ -130,7 +132,6 @@ def run_main():
     else:
         camera_view = 'Coronal_A'
         print(f"Default camera view: {camera_view}")
-
 
     rois = {}
     for i in range(num_max):
